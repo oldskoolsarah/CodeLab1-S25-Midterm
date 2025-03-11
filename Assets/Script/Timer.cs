@@ -33,11 +33,12 @@ public class Timer : MonoBehaviour
         
         if (currentTime == gameTime)
         {
-            timerDisplay.text = "Game Over!";
-            
-            //isGameOver = true;
             GameManager.instance.UpdateHighScores();
 
+            timerDisplay.text = "Game Over!" + " Your Score: " + GameManager.instance.Score + " High Score: " + GameManager.instance.currentHighScore;
+            
+            //isGameOver = true;
+           
             CancelInvoke(TimerTick);
         }
         else
@@ -52,7 +53,7 @@ public class Timer : MonoBehaviour
     {
         string result = "";
 
-        result = "Time: " + timeInt + " Score: " + GameManager.instance.Score;
+        result = "Time: " + timeInt + " Score: " + GameManager.instance.Score + " High Score: " + GameManager.instance.currentHighScore;
 
         return result;
     }

@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
 
     int score = 0;
 
+    public int currentHighScore = 0;
+
     public int Score
     {
         get
@@ -73,17 +75,27 @@ public class GameManager : MonoBehaviour
             {
                 highScores.Add(int.Parse(line));
             }
-        }
-        else //otherwise set high score to dummy values of 1 - 10
-        {
-            
-            for (int i = 0; i < 10; i++)
+
+            for (int i = 0; i < highScores.Count; i++)
             {
-                highScores.Add(10 - i);
+
+                if (highScores[i] > currentHighScore)
+                {
+                    currentHighScore = highScores[i];
+                }
+                
             }
+
+           
         }
-
-
+        else //do nothing
+        {
+            ////otherwise set high score to dummy values of 1 - 10
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    highScores.Add(10 - i);
+            //}
+        }
 
     }
 
@@ -104,6 +116,9 @@ public class GameManager : MonoBehaviour
             {
                 highScores.Insert(i, score);
                 //highScores.RemoveAt(highScores.Count - 1);
+
+                currentHighScore = score;
+
                 break;
             }
             if (highScores.Count > 10)
